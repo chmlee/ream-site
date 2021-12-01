@@ -49,10 +49,16 @@ function Spreadsheet({ array, style }) {
         <table style={style}>
         <tbody>
             {
-                array.map(row => {
+                array.map((row, i) => {
                     return (
-                        <tr>
-                            {row.map(cell => <td>{cell}</td>)}
+                        <tr key={i}>
+                            {row.map((cell, j) => {
+                                return (
+                                    <td key={`${i}-${j}`}>
+                                        {cell}
+                                    </td>
+                                )
+                            })}
                         </tr>
                     )
                 })
