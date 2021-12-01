@@ -2,6 +2,18 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
+import init, { ream2csv } from 'reamc';
+const main = async () => {
+    await init();
+    const result = ream2csv(`
+        # Country
+        - name: Belgium
+        - capital: Brussel
+        `)
+    console.log(result)
+}
+main();
+
 export default function Home() {
   return (
     <div className={styles.container}>
