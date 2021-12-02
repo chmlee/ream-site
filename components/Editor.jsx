@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import init, { ream2csv } from 'reamc';
-import ReactMarkdown from 'react-markdown'; // temp
+
+import EditorDoc from './EditorDoc.jsx';
+import EditorCSV from './EditorCSV.jsx';
+import EditorTable from './EditorTable.jsx';
 
 import styles from './Editor.module.css';
-
-
 
 export default function Editor() {
 
@@ -53,7 +54,15 @@ export default function Editor() {
         await compile(input)
     }
 
-    function updateOutputMode(e) {
+    async function updateOutputMode(e) {
+        const input = e
+            .target
+            .parentElement
+            .parentElement
+            .parentElement
+            .querySelector("#input")
+            .value;
+        await compile(input);
         setOutputMode(e.target.id)
     }
 
@@ -79,9 +88,10 @@ export default function Editor() {
                     <div className={styles.tabs}>
                     {
                         outputModes.map(mode => {
+                            const x = mode.id === outputMode ? 'active' : 'inactive'
                             return (
                                 <div 
-                                    className={styles.tab}
+                                    className={`${styles.tab} ${styles[x]}`}
                                     id={mode.id}
                                     key={mode.id}
                                     onClick={updateOutputMode}
@@ -107,7 +117,7 @@ export default function Editor() {
                 <button onClick={toggleCompile}>
                     Compile
                 </button>
-                <label className="autoCompileButton">
+                <label className={styles['autocompile-button']}>
                     <input 
                         type="checkbox" 
                         onChange={updateAutoCompile}
@@ -127,52 +137,13 @@ export default function Editor() {
 function Output({ result, input, outputMode }) {
 
     if (outputMode === 'table') {
-        return (<Table result={result} />)
+        return (<EditorTable result={result} />)
     } else if (outputMode === 'doc') {
-        return <Doc input={input}/>
+        return <EditorDoc input={input}/>
     } else if (outputMode === 'csv') {
-        return <CSV result={result} />
+        return <EditorCSV result={result} />
     }
 }
 
-function CSV({ result }) {
-    const raw = result.map(row => row.join(',')).join('\n');
-    return (
-        <div className="csv-wrapper">
-            <pre>{raw}</pre>
-        </div>
-    )
-}
 
-function Doc({ input }) {
-    return (
-        <div className="doc">
-            <ReactMarkdown>{input}</ReactMarkdown>
-        </div>
-    )
-}
-
-function Table({ result }) {
-    return (
-        <table>
-        <tbody>
-            {
-                result.map((row, i) => {
-                    return (
-                        <tr key={i}>
-                            {row.map((cell, j) => {
-                                return (
-                                    <td key={`${i}-${j}`}>
-                                        {cell}
-                                    </td>
-                                )
-                            })}
-                        </tr>
-                    )
-                })
-            }
-        </tbody>
-        </table>
-    )
-}
 

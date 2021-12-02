@@ -1,0 +1,29 @@
+.table {
+    margin: 0px;
+    padding: 0px;
+    height: 0px;
+    overflow: scroll;
+}
+
+
+.table {
+  text-align: left;
+  border-collapse: collapse;
+  border-spacing: 15px;
+}
+
+.table-row {
+    margin: 10%;
+    padding: 10%;
+}
+
+.odd-row {
+    background: LightGray;
+}
+
+.cell {
+    min-width: 1em;
+    padding: 0.5em 1em;
+}
+
+

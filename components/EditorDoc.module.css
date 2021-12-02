@@ -1,0 +1,32 @@
+.doc h1 {
+    font-size: 150%;
+}
+.doc h2 {
+    margin: 0 2%;
+    font-size: 140%;
+}
+.doc h3 {
+    margin: 0 4%;
+    font-size: 130%;
+}
+.doc h4 {
+    margin: 0 6%;
+    font-size: 120%;
+}
+.doc h5 {
+    margin: 0 9%;
+    font-size: 110%;
+}
+.doc h6 {
+    margin: 0 10%;
+    font-size: 100%;
+}
+
+.doc ul {
+    font-size: 100%;
+}
+
+.doc blockquote {
+    font-size: 80%;
+    color: gray;
+}

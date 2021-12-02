@@ -1,7 +1,7 @@
 .container {
     display: flex;
     flex-direction: column;
-    height: 15em;
+    height: 20em;
 }
 
 .row {
@@ -19,7 +19,6 @@
     width: 50%;
     height: 100%;
     margin: 5px;
-    border: 1px solid red; /* test */
 }
 
 .input-column {
@@ -32,20 +31,29 @@
 }
 
 .textarea-container > textarea {
-    color: red;
     resize: none;
     width: 100%;
     height: 100%;
     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
     -moz-box-sizing: border-box;    /* Firefox, other Gecko */
     box-sizing: border-box;         /* Opera/IE 8+ */
+    background: black;
+    color: white;
+    padding: 3% 0% 0% 5%;
+    font-size: 100%;
+    font-family: "Times New Roman",Georgia,Serif;
+    white-space: pre;
+    overflow-wrap: normal;
+    overflow-x: scroll;
+    /*font-family: monospace, monospace; */
+    font-family: 'JetBrains Mono';
     /*height: 100%;
     overflow: hidden; */
 }
 
 
 .output-column {
-    border: 1px solid #999;
+    border: 1px solid black;
     height: 100%;
     display: flex;
     flex-column: column;
@@ -55,14 +63,25 @@
 .tabs {
     display: flex;
     height: 10%;
+    border-bottom: 1px solid black; 
 }
 
 .tab {
-    color: red;
-    border: 1px solid #999;
+    height: 100%;
     padding: 0px 5px;
     width: 50px;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+ 
+.active {
+    color: black;
+    border-bottom: 3px solid red; 
+}
+
+.inactive {
+    color: gray;
 }
 
 .output-container {
@@ -74,22 +93,6 @@
     padding: 0% 0% 0% 5%;
 }
 
-.output-container > table {
-    color: red;
-    margin: 0px;
-    padding: 0px;
-    height: 0px;
-    overflow: scroll;
-}
-
-.output-container > .doc {
-    color: red;
-}
-
-.doc > {
-    color: red;
-    font-size: 10%;
-}
 
 .settings {
     align-items: center;
@@ -101,15 +104,14 @@
 
 .settings > * {
     margin: 0% 1%;
+
 }
 
 .settings > .error-message {
-    vertical-align: middle;
     color: red;
 }
 
 
- .csv-wrapper {
-}
+
 
 
