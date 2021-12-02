@@ -10,6 +10,7 @@ export default function Home() {
             </Head>
 
             <main>
+                <div>REAM</div>
                 <Editor />
             </main>
         </div>

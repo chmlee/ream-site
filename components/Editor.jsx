@@ -1,5 +1,10 @@
 import { useState } from 'react';
 import init, { ream2csv } from 'reamc';
+import ReactMarkdown from 'react-markdown'; // temp
+
+import styles from './Editor.module.css';
+
+
 
 export default function Editor() {
 
@@ -9,6 +14,7 @@ export default function Editor() {
         { id: 'csv', display: 'CSV' },
     ]
     const [ outputMode, setOutputMode ] = useState(outputModes[0].id);
+    const [ input, setInput ] = useState('# Data');
     const [ result, setResult ] = useState([[]]);
     const [ autoCompile, setAutoCompile ] = useState(true);
     const [ error, setError ] = useState('');
@@ -16,11 +22,11 @@ export default function Editor() {
     async function compile(input) {
         await init()
 
+        setInput(input)
         const result = ream2csv(input)
-        console.log(result)
         if (Array.isArray(result)) {
-            setError('no error')
-            return ream2csv(input)
+            setError('')
+            setResult(result)
         } else if (result !== null) {
             const e = Object.keys(result).map(key => {
                 const msg = [ key, result[key] ].join(": ")
@@ -31,100 +37,127 @@ export default function Editor() {
     }
 
     async function updateInput(e) {
-        if (!autoCompile) return null
-
-        const input = e.target.value
-        const result = await compile(input)
-        setResult(result)
+        if (autoCompile) {
+            const input = e.target.value
+            compile(input)
+        }
     }
 
     async function toggleCompile(e) {
-        const input = e.target.parentElement.querySelector("#input").value
-        const result = await compile(input)
-        setResult(result)
+        const input = e
+            .target
+            .parentElement
+            .parentElement
+            .querySelector("#input")
+            .value
+        await compile(input)
     }
 
     function updateOutputMode(e) {
-        outputMode = e.target.id;
-        setOutputMode(outputMode, outputMode)
+        setOutputMode(e.target.id)
     }
-
 
     function updateAutoCompile(e) {
         setAutoCompile(!autoCompile)
     }
 
-
-
     return (
-        <div className="editor-container">
-            <div class="editor-tab">Input</div>
-            <textarea 
-                className="input"
-                id="input" 
-                name="" 
-                cols="30" 
-                rows="10"
-                onChange={updateInput}
-            />
-            <div className="output-mode-option-container">
-            {
-                outputModes.map(mode => {
-                    return (
-                        <div 
-                            className="editor-tab output-mode"
-                            id={mode.id}
-                            key={mode.id}
-                            onClick={updateOutputMode}
-                        >
-                        {mode.display}
-                        </div>
-                    )
-                })
-
-            }
+        <div className={styles.container}>
+            <div className={styles.row}>
+                <div className={`${styles.column} ${styles['input-column']}`}>
+                    <div className={styles['textarea-container']}>
+                        <textarea 
+                            className="input"
+                            id="input" 
+                            name="" 
+                            onChange={updateInput}
+                            //value={input}
+                        />
+                    </div>
+                </div>
+                <div className={`${styles.column} ${styles['output-column']}`}>
+                    <div className={styles.tabs}>
+                    {
+                        outputModes.map(mode => {
+                            return (
+                                <div 
+                                    className={styles.tab}
+                                    id={mode.id}
+                                    key={mode.id}
+                                    onClick={updateOutputMode}
+                                >
+                                {mode.display}
+                                </div>
+                            )
+                        })
+                    
+                    }
+                    </div>
+                    <div className={styles['output-container']}>
+                        <Output 
+                            key={outputMode}
+                            result={result}
+                            input={input}
+                            outputMode={outputMode}
+                        />
+                    </div>
+                </div>
             </div>
-            <Output 
-                result={result}
-                outputMode={outputMode}
-            />
-            <button onClick={toggleCompile}>
-                Compile
-            </button>
-            <label className="autoCompileButton">
-                <input 
-                    type="checkbox" 
-                    onChange={updateAutoCompile}
-                    defaultChecked={autoCompile}
-                />
-                <span>Auto Update</span>
-            </label>
-            <div class="error-message">
-                {error}
+            <div className={styles.settings}>
+                <button onClick={toggleCompile}>
+                    Compile
+                </button>
+                <label className="autoCompileButton">
+                    <input 
+                        type="checkbox" 
+                        onChange={updateAutoCompile}
+                        defaultChecked={autoCompile}
+                    />
+                    <span>Auto Update</span>
+                </label>
+                <div className={styles['error-message']}>
+                    {error}
+                </div>
             </div>
         </div>
     )
 
 }
 
-function Output({ result, outputMode }) {
+function Output({ result, input, outputMode }) {
 
-    //console.log(result, outputMode)
+    if (outputMode === 'table') {
+        return (<Table result={result} />)
+    } else if (outputMode === 'doc') {
+        return <Doc input={input}/>
+    } else if (outputMode === 'csv') {
+        return <CSV result={result} />
+    }
+}
 
+function CSV({ result }) {
+    const raw = result.map(row => row.join(',')).join('\n');
     return (
-        <div className="output-container">
-            Output
+        <div className="csv-wrapper">
+            <pre>{raw}</pre>
         </div>
     )
 }
 
-function Spreadsheet({ array, style }) {
-    //console.log(array)
+function Doc({ input }) {
     return (
-        <table style={style}>
+        <div className="doc">
+            <ReactMarkdown>{input}</ReactMarkdown>
+        </div>
+    )
+}
+
+function Table({ result }) {
+    return (
+        <table>
         <tbody>
             {
-                array.map((row, i) => {
+                result.map((row, i) => {
                     return (
                         <tr key={i}>
                             {row.map((cell, j) => {
