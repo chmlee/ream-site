@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import dynamic from 'next/dynamic'
 import init, { ream2csv } from 'reamc';
 
 import EditorDoc from './EditorDoc.jsx';
@@ -7,7 +8,19 @@ import EditorTable from './EditorTable.jsx';
 
 import styles from './Editor.module.css';
 
-export default function Editor() {
+export default function Editor({ source }) {
+
+
+    const defaultText = source.trim()
+    let n = defaultText.split(`\n`).length + 8;
+    if (n < 10) {
+        n = 10
+    } else if (n > 30) {
+        n = 30
+    }
+    console.log(n)
+    const height = `${n}em`;
+    const columnStyle = { height: height }
 
     const outputModes = [
         { id: 'table', display: 'Table' },
@@ -15,7 +28,7 @@ export default function Editor() {
         { id: 'csv', display: 'CSV' },
     ]
     const [ outputMode, setOutputMode ] = useState(outputModes[0].id);
-    const [ input, setInput ] = useState('# Data');
+    const [ input, setInput ] = useState(source);
     const [ result, setResult ] = useState([[]]);
     const [ autoCompile, setAutoCompile ] = useState(true);
     const [ error, setError ] = useState('');
@@ -72,7 +85,7 @@ export default function Editor() {
 
     return (
         <div className={styles.container}>
-            <div className={styles.row}>
+            <div className={styles.row} style={columnStyle}>
                 <div className={`${styles.column} ${styles['input-column']}`}>
                     <div className={styles['textarea-container']}>
                         <textarea 
@@ -80,7 +93,7 @@ export default function Editor() {
                             id="input" 
                             name="" 
                             onChange={updateInput}
-                            //value={input}
+                            defaultValue={defaultText}
                         />
                     </div>
                 </div>

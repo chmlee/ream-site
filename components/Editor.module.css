@@ -1,7 +1,6 @@
 .container {
     display: flex;
     flex-direction: column;
-    height: 20em;
 }
 
 .row {
@@ -62,7 +61,7 @@
 
 .tabs {
     display: flex;
-    height: 10%;
+    height: 2em;
     border-bottom: 1px solid black; 
 }
 
