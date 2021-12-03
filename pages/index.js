@@ -2,36 +2,32 @@ import Head from 'next/head'
 import Editor from '../components/Editor'
 import Feature from '../components/Feature'
 import Nav from '../components/Nav.jsx'
-
+import Layout from '/components/Layout'
 
 export default function Home() {
     return (
-        <div className="container">
-            <Head>
-                <title>REAM site</title>
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
+            <Layout child={Content()} />
+    )
+}
 
-            <main>
-                <Nav />
-                <div className="intro">
-                    Data language for building maintainable and reusable social science datesets
-                </div>
+function Content() {
+    return (
+        <>
+            <div className="intro">
+                Data language for building maintainable and reusable social science datesets
+            </div>
 
-                <div className="index-button">
-                    <button>Why REAM</button>
-                    <button>Get Started</button>
-                </div>
+            <div className="index-button">
+                <button>Why REAM</button>
+                <button>Get Started</button>
+            </div>
 
-                <div className="feature-container">
-                {
-                    features.map((feature, i) => <Feature {...feature} key={`feature-${i}`}/>)
-
-                }
-                </div>
-
-            </main>
-        </div>
+            <div className="feature-container">
+            {
+                features.map((feature, i) => <Feature {...feature} key={`feature-${i}`}/>)
+            }
+            </div>
+        </>
     )
 }
 
@@ -44,7 +40,11 @@ const features = [
 - name: Belgium
 - capital: Brussels
 - population: 11433256
-- euro_zone: TRUE`,
+- euro_zone: TRUE
+- languages:
+  * Dutch
+  * French
+  * German`,
     },
     {
         title: 'Document Your Dataset',

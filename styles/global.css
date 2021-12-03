@@ -1,7 +1,17 @@
-main {
-    width: 100wh;
-    display: flex;
-    flex-direction: column;
+body {
+    margin: 0;
+    font-family: 'ArcoPerpetuoRegular';
+    font-weight: normal;
+    font-style: normal;
 }
 
+pre {
+   font-family: 'FiraCodeRegular';
+   font-weight: normal;
+   font-style: normal; 
+}
+
+a:hover {
+    color: red;
+}
 

@@ -1,3 +1,15 @@
-export default function Reference() {
-    return <p>reference</p>
+import Layout from '/components/Layout'
+
+export default function Page() {
+    return (
+            <Layout child={Content()} />
+    )
+}
+
+function Content() {
+    return (
+        <>
+            <p>reference</p>
+        </>
+    )
 }

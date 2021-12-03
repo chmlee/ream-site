@@ -40,14 +40,17 @@
     color: white;
     padding: 3% 0% 0% 5%;
     font-size: 100%;
-    font-family: "Times New Roman",Georgia,Serif;
     white-space: pre;
     overflow-wrap: normal;
     overflow-x: scroll;
     /*font-family: monospace, monospace; */
-    font-family: 'JetBrains Mono';
+    /*font-family: 'JetBrains Mono'; */
     /*height: 100%;
     overflow: hidden; */
+    line-height: 150%;
+    font-family: 'FiraCodeRegular';
+    font-weight: normal;
+    font-style: normal;
 }
 
 

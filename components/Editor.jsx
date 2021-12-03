@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic'
 import init, { ream2csv } from 'reamc';
 
@@ -9,19 +9,28 @@ import EditorTable from './EditorTable.jsx';
 import styles from './Editor.module.css';
 
 export default function Editor({ source }) {
+    
 
+    // wasm init
+    useEffect(() => {
+        async function start() {
+            await init()
+        }
+        start()
+    }, []) 
 
+    // set editor high 
     const defaultText = source.trim()
-    let n = defaultText.split(`\n`).length + 8;
+    let n = defaultText.split(`\n`).length + 10;
     if (n < 10) {
         n = 10
     } else if (n > 30) {
         n = 30
     }
-    console.log(n)
     const height = `${n}em`;
     const columnStyle = { height: height }
 
+    // states
     const outputModes = [
         { id: 'table', display: 'Table' },
         { id: 'doc', display: 'Doc' },
@@ -33,9 +42,7 @@ export default function Editor({ source }) {
     const [ autoCompile, setAutoCompile ] = useState(true);
     const [ error, setError ] = useState('');
 
-    async function compile(input) {
-        await init()
-
+    function compile(input) {
         setInput(input)
         const result = ream2csv(input)
         if (Array.isArray(result)) {
@@ -50,24 +57,24 @@ export default function Editor({ source }) {
         }
     }
 
-    async function updateInput(e) {
+    function updateInput(e) {
         if (autoCompile) {
             const input = e.target.value
             compile(input)
         }
     }
 
-    async function toggleCompile(e) {
+    function toggleCompile(e) {
         const input = e
             .target
             .parentElement
             .parentElement
             .querySelector("#input")
             .value
-        await compile(input)
+        compile(input)
     }
 
-    async function updateOutputMode(e) {
+    function updateOutputMode(e) {
         const input = e
             .target
             .parentElement
@@ -75,7 +82,7 @@ export default function Editor({ source }) {
             .parentElement
             .querySelector("#input")
             .value;
-        await compile(input);
+        compile(input);
         setOutputMode(e.target.id)
     }
 

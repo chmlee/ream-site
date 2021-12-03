@@ -1,0 +1,43 @@
+.nav {
+}
+
+.section-list {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    padding: 0 0 0 1em;
+}
+
+
+.level-1 {
+    li {
+        margin: 0 0 1em 0;
+        a {
+            color: black;
+            font-size: 20px;
+        }
+    }
+}
+
+.level-2 { 
+    li {
+        margin: 0 0 0.3em 0;
+        a {
+            color: gray;
+            font-size: 17px;
+        }
+    }
+    li:first-child {
+        margin: 0.3em 0 0.3em 0;
+    }
+}
+
+a.section-name {
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a.section-name:hover {
+    color: red;
+}
+
