@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Editor from '../components/Editor'
 import Feature from '../components/Feature'
+import Nav from '../components/Nav.jsx'
 
 
 export default function Home() {
@@ -12,6 +13,7 @@ export default function Home() {
             </Head>
 
             <main>
+                <Nav />
                 <div className="intro">
                     Data language for building maintainable and reusable social science datesets
                 </div>
