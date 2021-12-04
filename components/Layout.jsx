@@ -5,7 +5,8 @@ import Nav from '/components/Nav'
 
 import styles from '/components/Layout.module.scss'
 
-export default function Layout({ child }) {
+export default function Layout(props) {
+    console.log(props)
     return (
         <div className="container">
             <Head>
@@ -16,11 +17,11 @@ export default function Layout({ child }) {
             </Head>
 
             <main className={styles.main}>
-                <div className={styles.left}>
+                <div className={styles['nav-wrapper']}>
                     <Nav />
                 </div>
-                <div className={styles.right}>
-                    {child}
+                <div className={styles['main-wrapper']}>
+                    {props.children}
                 </div>
             </main>
         </div>

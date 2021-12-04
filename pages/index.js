@@ -4,13 +4,7 @@ import Feature from '../components/Feature'
 import Nav from '../components/Nav.jsx'
 import Layout from '/components/Layout'
 
-export default function Home() {
-    return (
-            <Layout child={Content()} />
-    )
-}
-
-function Content() {
+export default function Content() {
     return (
         <>
             <div className="intro">
