@@ -6,7 +6,7 @@ import EditorDoc from './EditorDoc.jsx';
 import EditorCSV from './EditorCSV.jsx';
 import EditorTable from './EditorTable.jsx';
 
-import styles from './Editor.module.css';
+import styles from './Editor.module.scss';
 
 export default function Editor({ source }) {
     
@@ -134,7 +134,7 @@ export default function Editor({ source }) {
                 </div>
             </div>
             <div className={styles.settings}>
-                <button onClick={toggleCompile}>
+                <button onClick={toggleCompile} className={styles.button}>
                     Compile
                 </button>
                 <label className={styles['autocompile-button']}>

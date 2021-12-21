@@ -1,21 +1,26 @@
-.main {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 99vh;
+.container {
 }
 
-.main > * {
+.page {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+
+.nav-wrapper {
+    width: 25em;
     height: 100%;
     overflow: auto;
 }
 
-.nav-wrapper {
-    width: 10em;
-}
-
 .main-wrapper {
-    margin: 0 0 0 1em;
+    padding: 1em;
     width: 100%;
+    overflow: auto;
 }
 
+//@media only screen and (max-width: 600px) {
+//  body {
+//    background-color: lightblue;
+//  }
+//}

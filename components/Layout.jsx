@@ -1,14 +1,15 @@
 import Head from 'next/head';
 
-import Feature from '/components/Feature';
+import { sections } from '/components/sections';
+import Scroll from '/components/Scroll'
+import Path from '/components/Path'
 import Nav from '/components/Nav'
 
 import styles from '/components/Layout.module.scss'
 
 export default function Layout(props) {
-    console.log(props)
     return (
-        <div className="container">
+        <>
             <Head>
                 <title>REAM site</title>
                 <link rel="icon" href="/favicon.ico" />
@@ -16,14 +17,16 @@ export default function Layout(props) {
                 <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/fira-code" type="text/css"/>
             </Head>
 
-            <main className={styles.main}>
+            <main className={styles.page}>
                 <div className={styles['nav-wrapper']}>
-                    <Nav />
+                    <Scroll />
                 </div>
                 <div className={styles['main-wrapper']}>
+                    <Path />
                     {props.children}
+                    <Nav />
                 </div>
             </main>
-        </div>
+        </>
     )
 }

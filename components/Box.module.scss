@@ -1,0 +1,38 @@
+@import '/styles/colors.scss';
+
+.box-container {
+    display: flex;
+    flex-direction: column;
+    border-left: 10px solid;
+    margin: 2em 0;
+    padding: 1em;
+
+    .title {
+        margin: 0 0 0.5em 0;
+        font-weight: bold;
+    }
+
+    .text {
+
+    }
+}
+
+.tip {
+    border-color: $green5;
+    background: $green1;
+}
+
+.warning {
+    border-color: $yellow5;
+    background: $yellow1;
+}
+
+.danger {
+    border-color: $red5;
+    background: $red1;
+}
+
+.detail {
+    border-color: $grey5;
+    background: $grey1;
+}

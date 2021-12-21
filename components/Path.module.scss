@@ -1,0 +1,27 @@
+@import '/styles/colors';
+
+.node-container {
+    display: flex;
+    flex-direction: row;
+    font-size: 80%;
+    margin: -0.5em 0 0 0,
+}
+
+.node-wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+.separator {
+    white-space: pre-wrap;
+}
+
+.path-item {
+    text-decoration: none;
+    color: $blue7;
+}
+
+.path-item:hover {
+    background-color: $blue4;
+    color: $grey0;
+}

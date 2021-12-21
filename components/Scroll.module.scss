@@ -1,0 +1,49 @@
+@import '/styles/colors';
+
+.nav {
+    height: 100%;
+    over-flow: scroll;
+    padding: 0 0 0 10%;
+    line-height: 150%;
+}
+
+.section-list {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+}
+
+.section-name {
+    white-space: nowrap;
+}
+
+.level-1 {
+    padding: 0;
+    li {
+        margin: 0 0 1em 0;
+        a {
+            color: $blue6;
+            font-size: 120%;
+        }
+        a:hover {
+            background-color: $blue4;
+            color: $grey0;
+        }
+    }
+}
+
+.level-2 { 
+    padding: 0 0 0 1em;
+    li {
+        margin: 0;
+        a {
+            color: $grey10;
+            font-size: 100%;
+        }
+    }
+}
+
+a.section-name {
+    font-weight: bold;
+    text-decoration: none;
+}

@@ -1,19 +1,36 @@
 import Head from 'next/head'
+import { useRouter } from 'next/router'
+
 import Editor from '../components/Editor'
 import Feature from '../components/Feature'
-import Nav from '../components/Nav.jsx'
 import Layout from '/components/Layout'
+import Box from '/components/Box'
 
 export default function Content() {
+    const router = useRouter();
+
     return (
         <>
+            <div className="brand">
+                REAM
+            </div>
             <div className="intro">
-                Data language for building maintainable and reusable social science datesets
+                Data language for building maintainable, reusable and quality social science datasets
             </div>
 
-            <div className="index-button">
-                <button>Why REAM</button>
-                <button>Get Started</button>
+            <div className="index-button-container">
+                <button 
+                    className="index-button" 
+                    onClick={() => router.push('/overview/motivation')}
+                >
+                    Why REAM
+                </button>
+                <button 
+                    className="index-button"
+                    onClick={() => router.push('/tutorial/getting-started')}
+                >
+                    Get Started
+                </button>
             </div>
 
             <div className="feature-container">

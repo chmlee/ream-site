@@ -1,0 +1,63 @@
+@import './colors.scss';
+
+body {
+    background: $grey0;
+    margin: 0;
+    font-family: 'ArcoPerpetuoRegular';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 20px;
+    line-height: 200%;
+    color: $grey10;
+    overflow: hidden;
+    line-height: 150%;
+}
+
+#__next {
+}
+
+pre {
+   font-family: 'FiraCodeRegular';
+   font-weight: normal;
+   font-style: normal; 
+}
+
+
+.brand {
+    font-size: 500%;
+    font-weight: bold;
+    color: $blue6;
+    margin: 0.5em 0 0.5em 0;
+}
+
+.intro {
+    font-size: 200%;
+    line-height: 120%;
+    margin: 0 0 1em 0;
+}
+
+.index-button-container {
+    display: flex;
+    flex-direction: row;
+    height: 5em;
+
+
+    .index-button {
+        font-size: 20px;
+        width: 7em;
+        height: 2.5em;
+        border: 2px solid $blue4;
+        background-color: $blue1;
+        border-radius: 20px; 
+    }
+
+    .index-button:first-child {
+        margin: 0 1em 0 0;
+    }
+
+    .index-button:hover {
+        background-color: $blue5;
+        color: $grey0;
+        border: 0;
+    }
+}
