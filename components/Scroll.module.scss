@@ -47,3 +47,34 @@ a.section-name {
     font-weight: bold;
     text-decoration: none;
 }
+
+.menu-button {
+    display: none;
+}
+
+@media only screen and (max-width: 600px) {
+    .nav {
+        position: fixed;
+        height: auto;
+        width: 100%;
+        padding: 0 0 0 1em;
+        line-height: 150%;
+    }
+
+    .menu-button {
+        position: fixed;
+        display: block;
+        text-align: right;
+        padding: 0 2em 0 0;
+        display: block;
+        right: 0;
+        top: 0;
+    }
+
+    .nav-wrapper {
+        height: 100vh;
+        overflow: scroll;
+        background-color: $grey0;
+    }
+}
+

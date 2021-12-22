@@ -128,7 +128,15 @@
     color: $grey0;
 }
 
+@media only screen and (max-width: 800px) {
+    .row {
+        flex-direction: column;
 
+        .column {
+            width: 100%;
+        }
+    }
+}
 
 
 
